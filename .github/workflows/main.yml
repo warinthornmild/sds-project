@@ -4,32 +4,32 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
-    - name: Publish frontend.git to Docker Repository
-      uses: warinthornmild/sds-project/frontend.git/@master
-      with:
-        name: warinthornmild/sds-project-frontend
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Publish order_service.git to Docker Repository
-      uses: warinthornmild/sds-project/order_service.git/@master
-      with:
-        name: warinthornmild/sds-project-order_service
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Publish product_service.git to Docker Repository
-      uses: warinthornmild/sds-project/product_service.git/@master
-      with:
-        name: warinthornmild/sds-project-product_service
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Publish user_service.git to Docker Repository
-      uses: warinthornmild/sds-project/user_service.git/@master
-      with:
-        name: warinthornmild/sds-project-user_service
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: actions/checkout@master
+      - name: Publish frontend.git to Docker Repository
+        uses: warinthornmild/sds-project/frontend.git/@master
+        with:
+          name: warinthornmild/sds-project-frontend
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          workdir: /app
+      - name: Publish order_service.git to Docker Repository
+        uses: warinthornmild/sds-project/order_service.git/@master
+        with:
+          name: warinthornmild/sds-project-order_service
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish product_service.git to Docker Repository
+        uses: warinthornmild/sds-project/product_service.git/@master
+        with:
+          name: warinthornmild/sds-project-product_service
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish user_service.git to Docker Repository
+        uses: warinthornmild/sds-project/user_service.git/@master
+        with:
+          name: warinthornmild/sds-project-user_service
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}

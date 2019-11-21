@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Publish frontend.git to Docker Repository
-        uses: warinthornmild/sds-project/frontend.git/@master
+        # uses: warinthornmild/sds-project/frontend.git/@master
         # with:
         #   name: warinthornmild/sds-project-frontend
         #   username: ${{ secrets.DOCKER_USERNAME }}

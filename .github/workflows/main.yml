@@ -10,11 +10,12 @@ jobs:
       - uses: actions/checkout@master
       - name: Publish frontend.git to Docker Repository
         uses: warinthornmild/sds-project/frontend.git/@master
-        with:
-          name: warinthornmild/sds-project-frontend
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          workdir: /app
+        # with:
+        #   name: warinthornmild/sds-project-frontend
+        #   username: ${{ secrets.DOCKER_USERNAME }}
+        #   password: ${{ secrets.DOCKER_PASSWORD }}
+        #   workdir: /app
+        run: pwd
       - name: Publish order_service.git to Docker Repository
         uses: warinthornmild/sds-project/order_service.git/@master
         with:

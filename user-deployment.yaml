@@ -19,14 +19,14 @@ spec:
           image: warinthornmild/sds-project-user_service
           ports:
             - containerPort: 5000
-          depends_on:
-            - user_db
-          restart: always
+          # depends_on:
+          #   - user_db
+          # restart: always
         - name: user_db
           image: mysql:5.7.22
           volumes:
             - user-db-data:/var/lib/mysql
-          environment:
-            - MYSQL_ROOT_PASSWORD=test
-            - MYSQL_DATABASE=user
-          restart: always
+          # environment:
+          #   - MYSQL_ROOT_PASSWORD=test
+          #   - MYSQL_DATABASE=user
+          # restart: always

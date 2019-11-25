@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-deployment
+  labels:
+    app: user_service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user_service
+  template:
+    metadata:
+      labels:
+        app: user_service
+    spec:
+      containers:
+        - name: user
+          image: warinthornmild/sds-project-user_service
+          ports:
+            - containerPort: 5000
+          depends_on:
+            - user_db
+          restart: always
+        - name: user_db
+          image: mysql:5.7.22
+          volumes:
+            - user-db-data:/var/lib/mysql
+          environment:
+            - MYSQL_ROOT_PASSWORD=test
+            - MYSQL_DATABASE=user
+          restart: always

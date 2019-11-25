@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: user-deployment
   labels:
-    app: user_service
+    app: user-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user_service
+      app: user-service
   template:
     metadata:
       labels:
-        app: user_service
+        app: user-service
     spec:
       containers:
         - name: user
@@ -22,7 +22,7 @@ spec:
           # depends_on:
           #   - user_db
           # restart: always
-        - name: user_db
+        - name: user-db
           image: mysql:5.7.22
           volumes:
             - user-db-data:/var/lib/mysql

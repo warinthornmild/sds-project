@@ -25,7 +25,7 @@ spec:
           #   - user_db
           # restart: always
         - name: user-db
-          image: mysql:5.7.22
+          image: tobi312/rpi-mysql
           volumeMounts:
             - name: user-db-data
               mountPath: /var/lib/mysql

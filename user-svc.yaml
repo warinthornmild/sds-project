@@ -5,6 +5,7 @@ metadata:
   labels:
     run: user-service
 spec:
+  type: NodePort
   ports:
     - port: 8082
       protocol: TCP

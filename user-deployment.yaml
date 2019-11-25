@@ -24,8 +24,9 @@ spec:
           # restart: always
         - name: user-db
           image: mysql:5.7.22
-          volumes:
-            - user-db-data:/var/lib/mysql
+          volumeMounts:
+            - name: user-db-data
+              mountPath: /var/lib/mysql
           # environment:
           #   - MYSQL_ROOT_PASSWORD=test
           #   - MYSQL_DATABASE=user

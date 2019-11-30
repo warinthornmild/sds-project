@@ -1,6 +1,8 @@
 from flask import session
+from flask import current_app as app
 import requests
 
+user_path = app.config['USER_SERVICE']
 
 class UserClient:
 
@@ -11,7 +13,7 @@ class UserClient:
             'username': form.username.data,
             'password': form.password.data,
         }
-        url = 'http://user:5000/api/user/login'
+        url = user_path+'/api/user/login'
         response = requests.request("POST", url=url, data=payload)
         if response:
             d = response.json()
@@ -21,7 +23,7 @@ class UserClient:
 
     @staticmethod
     def does_exist(username):
-        url = 'http://user:5000/api/user/'+username+'/exist'
+        url = user_path+'/api/user/'+username+'/exist'
         response = requests.request("GET", url=url)
         return response.status_code == 200
 
@@ -35,7 +37,7 @@ class UserClient:
             'last_name': form.last_name.data,
             'username': form.username.data
         }
-        url = 'http://user:5000/api/user/create'
+        url = user_path+'/api/user/create'
         response = requests.request("POST", url=url, data=payload)
         if response:
             user = response.json()
@@ -47,6 +49,6 @@ class UserClient:
             'Authorization': 'Basic ' + session['user_api_key']
         }
 
-        response = requests.request(method="GET", url='http://user:5000/api/user', headers=headers)
+        response = requests.request(method="GET", url=user_path+'/api/user', headers=headers)
         user = response.json()
         return user

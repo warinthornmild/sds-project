@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 volumes:
   product-node-modules:
@@ -76,7 +76,6 @@ services:
     networks:
       - order-network
 
-
   order:
     build:
       context: ../order_service.git/
@@ -101,4 +100,3 @@ services:
     restart: always
     networks:
       - order-network
-

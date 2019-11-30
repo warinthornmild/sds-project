@@ -1,6 +1,8 @@
 from flask import session
+from flask import current_app as app
 import requests
 
+order_path = app.config['ORDER_SERVICE']
 
 class OrderClient:
 
@@ -10,14 +12,14 @@ class OrderClient:
             'Authorization': 'Basic ' + session['user_api_key']
         }
 
-        response = requests.request(method="GET", url='http://order:5000/api/order', headers=headers)
+        response = requests.request(method="GET", url=order_path+'/api/order', headers=headers)
         order = response.json()
         return order
 
     @staticmethod
     def update_order(items):
 
-        url = 'http://order:5000/api/order/update'
+        url = order_path+'/api/order/update'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
@@ -33,7 +35,7 @@ class OrderClient:
             'product_id': product_id,
             'qty': qty,
         }
-        url = 'http://order:5000/api/order/add-item'
+        url = order_path+'/api/order/add-item'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }
@@ -45,7 +47,7 @@ class OrderClient:
 
     @staticmethod
     def post_checkout():
-        url = 'http://order:5000/api/order/checkout'
+        url = order_path+'/api/order/checkout'
         headers = {
             'Authorization': 'Basic ' + session['user_api_key']
         }

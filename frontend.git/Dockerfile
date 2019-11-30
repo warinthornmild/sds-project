@@ -13,5 +13,9 @@ RUN apk add --update \
 
 COPY ./app /app
 
+ENV PRODUCT_SERVICE 'http://192.168.43.170:30002'
+ENV USER_SERVICE 'http://192.168.43.170:30003'
+ENV ORDER_SERVICE 'http://192.168.43.170:30004'
+
 CMD python app.py run -h 0.0.0.0
 

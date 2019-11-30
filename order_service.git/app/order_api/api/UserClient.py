@@ -1,8 +1,9 @@
 from flask import session
 from flask import current_app as app
+import os
 import requests
 
-user_path = app.config['USER_SERVICE']
+user_path = os.getenv('USER_SERVICE')
 
 class UserClient:
 

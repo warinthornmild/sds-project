@@ -13,7 +13,7 @@ login_manager.init_app(app)
 
 app.config.update(dict(
     SECRET_KEY="powerful secretkey",
-    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@user-db/user',
+    SQLALCHEMY_DATABASE_URI='mysql+mysqlconnector://root:test@localhost:3306/user',
 ))
 
 models.init_app(app)

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: warinthornmild/sds-project-frontend
+          image: warinthornmild/sds-project-frontend:latest
           ports:
             - containerPort: 5000

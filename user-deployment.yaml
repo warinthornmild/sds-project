@@ -17,19 +17,24 @@ spec:
       volumes:
         - name: user-db-data
       containers:
-        - name: user
-          image: warinthornmild/sds-project-user_service
-          ports:
-            - containerPort: 5000
+        # - name: user
+        #   image: warinthornmild/sds-project-user_service
+        #   ports:
+        #     - containerPort: 5000
           # depends_on:
           #   - user_db
           # restart: always
         - name: user-db
           image: tobi312/rpi-mysql
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: test
+          - name: MYSQL_DATABASE
+            value: user
+          port:
+          - containerPort: 3306
+            name: mysql
           volumeMounts:
             - name: user-db-data
               mountPath: /var/lib/mysql
-          # environment:
-          #   - MYSQL_ROOT_PASSWORD=test
-          #   - MYSQL_DATABASE=user
           # restart: always

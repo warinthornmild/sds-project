@@ -5,11 +5,11 @@ metadata:
   labels:
     run: user-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-    - port: 5000
+    - port: 5050
       protocol: TCP
       targetPort: 5000
-      nodePort: 30001
+      nodePort: 30003
   selector:
-    run: user-service
+    app: user-service

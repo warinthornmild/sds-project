@@ -32,7 +32,7 @@ spec:
               mountPath: /var/lib/mysql
           # restart: always
         - name: user
-          image: localhost:5000/sds-project-user_service
+          image: warinthornmild/sds-project-user_service
           ports:
             - containerPort: 5000
           # depends_on:

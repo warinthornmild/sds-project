@@ -2,8 +2,7 @@ from flask import make_response, request, json, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from passlib.hash import sha256_crypt
 from . import user_api_blueprint
-# from models import db, User
-from ../app.py import mongo
+from models import db, User
 
 
 @user_api_blueprint.route("/api/user/docs.json", methods=['GET'])

@@ -24,5 +24,7 @@ RUN npm install
 
 COPY ./app /app
 
+ENV USER_SERVICE 'http://192.168.43.61:30004'
+
 CMD ["python", "app.py"]
 

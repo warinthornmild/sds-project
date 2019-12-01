@@ -29,6 +29,7 @@ class UserClient:
 
     @staticmethod
     def post_user_create(form):
+        print('mild'+USER_SERVICE)
         user = False
         payload = {
             'email': form.email.data,

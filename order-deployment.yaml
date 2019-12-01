@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-deployment
+  labels:
+    app: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      volumes:
+        - name: order-db-data
+      containers:
+        - name: order-db
+          image: hypriot/rpi-mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: test
+            - name: MYSQL_DATABASE
+              value: order
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: order-db-data
+              mountPath: /var/lib/mysql
+        - name: order
+          image: warinthornmild/sds-project-order_service
+          ports:
+            - containerPort: 5000

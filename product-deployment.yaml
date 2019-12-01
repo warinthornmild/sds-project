@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-deployment
+  labels:
+    app: product-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-service
+  template:
+    metadata:
+      labels:
+        app: product-service
+    spec:
+      volumes:
+        - name: product-db-data
+      containers:
+        - name: product-db
+          image: hypriot/rpi-mysql
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: test
+            - name: MYSQL_DATABASE
+              value: product
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: product-db-data
+              mountPath: /var/lib/mysql
+        - name: product
+          image: warinthornmild/sds-project-product_service
+          ports:
+            - containerPort: 5000

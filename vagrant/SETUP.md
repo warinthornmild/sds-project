@@ -4,7 +4,7 @@
 2. [Vagrant](https://www.vagrantup.com/downloads.html)
 
 ## Infrastructure setup on each machine
-1. cd to each directory [load-balancer, master1, master2]
+1. cd to each directory [load-balancer, master1, master2] in vagrant.
 2. Run `vagrant up` to start VM (you config VM in Vagrantfile)
 3. In first time, vagrant will run provision script(to install all packages) automatically. If not run `vagrant reload --provision`
 4. SSH to vm via `vagrant ssh`
@@ -33,6 +33,30 @@ sudo kubeadm init --control-plane-endpoint "192.168.99.200:6443" --upload-certs 
     --control-plane --certificate-key <certificate-key >
 ```
 3. verify node by running `kubectl get nodes`
+ 
+## Worker(RaspberryPi) setup
+1. SSH to rpi
+2. Setup static rpi according to topolopy
+3. Install docker `curl -sSL get.docker.com | sh && sudo usermod pi -aG docker`
+4. Turn off swap
+``` 
+sudo systemctl disable dphys-swapfile.service
+sudo swapoff -a
+```
+5. Install kubeadm, kubectl, kubelet
+```
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
+sudo apt-key add - && echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | \
+sudo tee /etc/apt/sources.list.d/kubernetes.list && sudo apt-get update -q
+
+sudo apt-get install -qy kubelet kubectl kubeadm
+```
+6. To use `flannel` network run 
+```
+sudo sysctl net.bridge.bridge-nf-call-iptables=1
+```
+7. use join command to join cluster
+
 
 ## Install network cni plugin 
 After all nodes have already joined the cluster. we will install the `flannel` as network cni plugin 

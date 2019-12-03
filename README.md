@@ -19,3 +19,8 @@
 
 # Setup cluster guide
 [SETUP.md](https://github.com/warinthornmild/sds-project/blob/master/vagrant/SETUP.md)
+
+# How to deploy application 
+1. Clone this repo.
+2. cd to `kubernetes`
+3. Run `deploy.sh`

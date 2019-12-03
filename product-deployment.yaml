@@ -34,3 +34,10 @@ spec:
           image: warinthornmild/sds-project-product_service
           ports:
             - containerPort: 5000
+#          livenessProbe:
+ #           httpGet:
+  #            path: /api/products
+   #           port: 5000
+    #        initialDelaySeconds: 10
+     #       periodSeconds: 3
+

@@ -35,6 +35,9 @@ spec:
           image: warinthornmild/sds-project-user_service
           ports:
             - containerPort: 5000
-          # depends_on:
-          #   - user_db
-          # restart: always
+#          livenessProbe:
+#           httpGet:
+#              path: /api/users
+#              port: 5000
+#            initialDelaySeconds: 10
+#            periodSeconds: 3

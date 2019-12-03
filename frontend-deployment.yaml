@@ -16,6 +16,12 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: warinthornmild/sds-project-frontend:latest
+          image: warinthornmild/sds-project-frontend:nueng
           ports:
             - containerPort: 5000
+          livenessProbe:
+            exec:
+              command:
+                - ls
+            initialDelaySeconds: 10
+            periodSeconds: 3

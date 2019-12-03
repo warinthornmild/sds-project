@@ -31,6 +31,12 @@ spec:
             - name: order-db-data
               mountPath: /var/lib/mysql
         - name: order
-          image: warinthornmild/sds-project-order_service
+          image: warinthornmild/sds-project-order_service:nueng
           ports:
             - containerPort: 5000
+#          livenessProbe:
+#            httpGet:
+#              path: /api/orders
+#              port: 5000
+#            initialDelaySeconds: 10
+#            periodSeconds: 3

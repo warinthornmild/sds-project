@@ -11,7 +11,7 @@ $(lsb_release -cs) \
 stable"
 
 apt-get update
-apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
+apt-get install -y docker-ce
 
 #install kuberbetes
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
